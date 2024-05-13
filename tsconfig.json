@@ -27,5 +27,10 @@
   ],
   "exclude": [
     "node_modules"
-  ]
+  ],
+  "paths": {
+    "@resources/*": ["./resources/*"],
+    "@pages/*": ["./pages/*"],
+    "@public/*": ["./public/*"]
+  }
 }
