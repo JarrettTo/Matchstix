@@ -9,15 +9,66 @@ import { CardBody, CardContainer, CardItem } from '../components/ui/3d-card';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import React, { useEffect, useRef, useState } from 'react';
+import lottie from 'lottie-web';
+import animationData from '../utils/animation';
+import FilmBG from '../public/hero/film_bg.svg'
+import Film1 from '../public/hero/film1.jpg'
+import Film2 from '../public/hero/film2.jpg'
+import Film3 from '../public/hero/film3.jpg'
+import Film4 from '../public/hero/film4.jpg'
+import { cn } from '../utils/cn';
+import { ButtonsCard } from '../components/ui/button';
 const Home: NextPage = () => {
-  const heroMainBg = require('/public/hero/hero_main_bg.jpg').default.src;
-  const heroLeftBg = require('/public/hero/hero_left_bot_bg.jpg').default.src;
-  const heroBotBg = require('/public/hero/hero_mid_bot_bg.jpg').default.src;
-  const heroTopRightBg = require('/public/hero/hero_top_right.jpg').default.src;
+  const animationContainer = useRef<HTMLDivElement>(null);
+    const animationInstance = useRef<any>(null);
+    const [fixed, setFixed] = useState(true)
+    useEffect(() => {
+        if (animationContainer.current) {
+            animationInstance.current = lottie.loadAnimation({
+                container: animationContainer.current,
+                renderer: 'svg',
+                loop: false,
+                autoplay: false,
+                animationData: animationData
+            });
+        }
+        animationInstance.current.addEventListener('DOMLoaded', () => {
+          const totalFrames = animationInstance.current.totalFrames;
+          const seventyFivePercentFrame = totalFrames * 0.5;
+
+          
+      });
+
+        const handleScroll = () => {
+          if (animationContainer.current) {
+            const rect = animationContainer.current.getBoundingClientRect();
+            const windowHeight = window.innerHeight;
+            const isInMiddle = rect.top + rect.height / 2 < windowHeight / 2 && rect.top + rect.height / 2 > windowHeight / 2 - rect.height / 2;
+
+            if (isInMiddle) {
+                setFixed(true);
+            } 
+        }
+            const scrollPercentage = (document.documentElement.scrollTop + document.body.scrollTop) / (document.documentElement.scrollHeight - document.documentElement.clientHeight);
+            const totalFrames = animationInstance.current.totalFrames;
+            const frame = totalFrames * scrollPercentage;
+            animationInstance.current.goToAndStop(frame, true);
+        };
+
+        window.addEventListener('scroll', handleScroll);
+        
+
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+            animationInstance.current?.destroy();
+        };
+    }, []);
+
   return (
     <>
       <div className="flex flex-col items-center justify-center" style={{width: '100%', height: '100vh', overflow: 'hidden', position:'relative'}}>
-        <video id="background-video" muted loop autoPlay style={{ width: '100%', height: '100%', objectFit: 'cover',fontWeight: 'bold',  position:'absolute', top: 0, left: 0 }}>
+        <video id="background-video" muted loop autoPlay style={{ width: '100%', height: '100%', objectFit: 'cover',fontWeight: 'bold',  position:'absolute', zIndex:'100', top: 0, left: 0 }}>
           <source src="/hero/bg_video.mp4" type="video/mp4" />
         </video>
         
@@ -35,7 +86,7 @@ const Home: NextPage = () => {
             </svg>
           </div>
           <div className='flex flex-row w-7/10 justify-between'>
-          <div style={{ display: 'flex', alignItems: 'center' }}>
+          <div style={{ display: 'flex', alignItems: 'center', zIndex:200 }}>
             <svg height="80" viewBox="0 0 200 80" style={{ cursor: 'pointer' }}>
               <text x="50%" y="50%" dominantBaseline="middle" textAnchor="middle" style={{ fontFamily: 'Ibarra Real Nova, serif', fontSize: '45px', letterSpacing: '-2px', fill: '#FFF1D6', stroke: '#FFF1D6', strokeWidth: '2px' }}>
                 about us
@@ -56,7 +107,7 @@ const Home: NextPage = () => {
           </div>
           </div>
         </div>
-        <div className='flex flex-col relative justify-center items-center' style={{width:'100%', marginTop:'100px'}}>
+        <div className='flex flex-col relative justify-center items-center' style={{width:'100%', marginTop:'100px', zIndex:200 }}>
           <div className='flex flex-row w-10/10 justify-between'>
             <div style={{ display: 'flex', alignItems: 'center', justifyContent:'between', width:'100%', height:'30px' }}>
               {/* Instagram Button */}
@@ -139,13 +190,33 @@ const Home: NextPage = () => {
       </div>
 
 
-
-      <div className="flex flex grid grid-cols-8 p-14 grid-rows-1 gap-6 mt-14 w-10/10" style={{height:'100vh'}}>
-        <div className="col-span-3 row-span-1 flex flex-col">
+      <div className="h-[50rem] w-full dark:bg-black bg-black  dark:bg-grid-small-white/[0.2] bg-grid-small-white/[0.4] relative flex items-center justify-center" style={{height:'200vh', width:'100%', position:'relative'}}>
+        <div className="flex flex-col justify-center items-center" style={{
+          zIndex:49,
+          height: '100vh', // Adjust height as needed
+          width: '100%', // Adjust width as needed
+          background: 'radial-gradient(circle, #212428 10%, transparent 80%)',
+          position: fixed? 'fixed' : 'relative',top: '50%', transform: 'translateY(-50%)',
+        }}>
+          <p className='font-bold text-3xl text-white tracking-tightest leading-tightest' style={{fontSize:'70px', textAlign:'center'}}>Makes Memories With<br/>The Right People</p>
+          <p className='font-normal text-lg mt-8 text-white tracking-tightest leading-tightest items-center w-4/12' style={{textAlign:'center'}}>Peep our latest hangouts and events. It was sich a vibe fr and we can't wait for the next one. We know you're feeling the fomo, so why not give in and sign up?</p>
+        </div>
+        <div ref={animationContainer} style={{  zIndex:50,height: 'auto', margin: '0 auto', position: fixed? 'fixed' : 'relative',top: '50%', transform: 'translateY(-50%)', width:'100%' }}></div>
+      </div>
+      
+      <div className="bg-darkgray flex flex grid grid-cols-8 py-14 grid-rows-2 gap-6 w-10/10" style={{height:'100vh', position:'relative', zIndex:100, paddingTop:'100px',paddingBottom:'150px'}}>
+        <div className="col-span-3 row-span-1 flex flex-col px-14">
           <p className='font-bold text-3xl text-white tracking-tightest leading-tightest' style={{fontSize:'90px'}}>Most Recent<br/>Events</p>
           <p className='font-normal text-lg mt-8 text-white tracking-tightest leading-tightest w-10/12'>Peep our latest hangouts and events. It was sich a vibe fr and we can't wait for the next one. We know you're feeling the fomo, so why not give in and sign up?</p>
+          <button className="p-[3px] relative w-4/12 mt-9">
+            <div className="absolute inset-0 bg-gradient-to-r from-orange to-orange rounded-lg" />
+            <div className="px-4 py-2  bg-black rounded-[6px]  relative group transition duration-200 text-white hover:bg-transparent">
+              Lit up borders
+            </div>
+          </button>
         </div>
-        <div className="col-span-5 row-span-1 flex flex-row justify-between items-start">
+        
+        <div className="col-span-5 row-span-1 flex flex-row justify-between items-start px-14">
           <CardContainer className="inter-var px-2 py-0 mx-0 my-0 w-5/10">
             <CardBody className="bg-white relative group/card  dark:hover:shadow-2xl dark:hover:shadow-emerald-500/[0.1] dark:bg-black dark:border-white/[0.2] border-black/[0.1] w-full  h-auto rounded-xl p-4 border  ">
               
@@ -211,9 +282,32 @@ const Home: NextPage = () => {
             </CardBody>
           </CardContainer>
         </div>
+        <div className="col-span-8 row-span-1 flex flex-row mt-14 py-14 relative" style={{marginTop:'120px', height:'100%'}}>
+          <div className='relative flex justify-center items-center' style={{width: '400px'}}>
+            <Image src={Film1} width={800} height={100} alt="Film BG" style={{position:'absolute', height:'100%',width:'100%',objectFit:'cover',zIndex:'100'}} />
+            <Image src={FilmBG} width={800} height={100} alt="Film BG" style={{position:'absolute', width:'100%', zIndex:'99'}} />
+          </div>
+          <div className='relative flex justify-center items-center' style={{width: '400px'}}>
+            <Image src={Film2} width={800} height={100} alt="Film BG" style={{position:'absolute', height:'100%',width:'100%',objectFit:'cover',zIndex:'100'}} />
+            <Image src={FilmBG} width={800} height={100} alt="Film BG" style={{position:'absolute', width:'100%', zIndex:'99'}} />
+          </div>
+          <div className='relative flex justify-center items-center' style={{width: '400px'}}>
+            <Image src={Film3} width={800} height={100} alt="Film BG" style={{position:'absolute', height:'100%',width:'100%',objectFit:'cover',zIndex:'100'}} />
+            <Image src={FilmBG} width={800} height={100} alt="Film BG" style={{position:'absolute', width:'100%', zIndex:'99'}} />
+          </div>
+          <div className='relative flex justify-center items-center' style={{width: '400px'}}>
+            <Image src={Film4} width={800} height={100} alt="Film BG" style={{position:'absolute', height:'100%',width:'100%',objectFit:'cover',zIndex:'100'}} />
+            <Image src={FilmBG} width={800} height={100} alt="Film BG" style={{position:'absolute', width:'100%', zIndex:'99'}} />
+          </div>
+          <div className='relative flex justify-center items-center' style={{width: '400px'}}>
+            <Image src={Film4} width={800} height={100} alt="Film BG" style={{position:'absolute', height:'100%',width:'100%',objectFit:'cover',zIndex:'100'}} />
+            <Image src={FilmBG} width={800} height={100} alt="Film BG" style={{position:'absolute', width:'100%', zIndex:'99'}} />
+          </div>
+          
+        </div>
       </div>
       
-      <div className="text-white min-h-screen p-14 grid grid-cols-4 grid-rows-10 gap-6">
+      <div className="bg-darkgray text-white min-h-screen p-14 grid grid-cols-4 grid-rows-10 gap-6" style={{zIndex:100, position:'relative', paddingTop:'150px'}}>
      
         <div className="col-span-1 row-span-6" style={{ height: '500px', overflow: 'hidden', position:'relative'}}>
           <CardContainer className="inter-var px-0 py-0 mx-0 my-0 w-full">
@@ -269,7 +363,7 @@ const Home: NextPage = () => {
         </div>
         
         {/* Middle-right register form */}
-        <div className="col-span-2 row-span-6">
+        <div className="col-span-2 row-span-6" >
           <CardContainer className="inter-var px-0 py-0 mx-0 my-0 w-full">
               <CardBody className="bg-navyblue-600 relative group/card  dark:hover:shadow-2xl dark:hover:shadow-emerald-500/[0.1] dark:bg-black dark:border-white/[0.2] border-black/[0.1] w-full  h-auto rounded-xl p-6 border  ">
                 <CardItem

@@ -13,9 +13,14 @@
   "dependencies": {
     "clsx": "^2.1.1",
     "framer-motion": "^11.2.4",
+    "lottie-web": "^5.12.2",
+    "mini-svg-data-uri": "^1.4.4",
     "next": "^14.2.3",
+    "prop-types": "^15.8.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "react-element-to-jsx-string": "^15.0.0",
+    "react-lottie": "^1.2.4",
     "react-slick": "^0.30.2",
     "slick-carousel": "^1.8.1",
     "tailwind-merge": "^2.3.0"
@@ -23,6 +28,7 @@
   "devDependencies": {
     "@types/node": "^20.12.11",
     "@types/react": "^18.3.2",
+    "@types/react-lottie": "^1.2.10",
     "@types/react-slick": "^0.23.13",
     "autoprefixer": "^10.4.19",
     "postcss": "^8.4.38",
