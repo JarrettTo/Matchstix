@@ -31,6 +31,7 @@
   "paths": {
     "@resources/*": ["./resources/*"],
     "@pages/*": ["./pages/*"],
-    "@public/*": ["./public/*"]
+    "@public/*": ["./public/*"],
+    "@utils/*": ["./utils/*"]
   }
 }

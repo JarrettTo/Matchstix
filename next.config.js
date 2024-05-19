@@ -1,4 +1,7 @@
 module.exports = {
+  images: {
+    domains: ['images.unsplash.com'],
+  },
     webpack: (config, { isServer }) => {
       // Add a rule to handle mp4 files
       config.module.rules.push({

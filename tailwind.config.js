@@ -22,8 +22,10 @@ module.exports = {
         DEFAULT: '#5c6ac4',  // Example brand color
         dark: '#202e78',    // Example dark blue
         orange: '#F77F00',
-        darkblue:'#021E2D'
-        
+        darkblue:'#003049',
+        navyblue: {
+          600: '#030D17'  // Replace '#005f73' with the hex code of the color you want
+        }
       },
       letterSpacing: {
         tightest: '-0.08em', // -8% letter spacing
@@ -48,6 +50,10 @@ module.exports = {
       orange: {
         500: '#F77F00', // Example shade for orange-500
         600: '#ea580c', // Darker shade for orange-600
+      },
+      navyblue: {
+        500: '#F77F00', // Example shade for orange-500
+        600: '#003049', // Darker shade for orange-600
       },
       width: {
         '2/12':'16.666%',
