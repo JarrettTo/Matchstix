@@ -17,12 +17,28 @@ import Film1 from '../public/hero/film1.jpg'
 import Film2 from '../public/hero/film2.jpg'
 import Film3 from '../public/hero/film3.jpg'
 import Film4 from '../public/hero/film4.jpg'
+import Film5 from '../public/hero/film5.jpg'
+import Overlay from '../public/hero/overlay.jpg'
+import "slick-carousel/slick/slick.css"; 
+import "slick-carousel/slick/slick-theme.css";
 import { cn } from '../utils/cn';
 import { ButtonsCard } from '../components/ui/button';
 const Home: NextPage = () => {
   const animationContainer = useRef<HTMLDivElement>(null);
     const animationInstance = useRef<any>(null);
     const [fixed, setFixed] = useState(true)
+    const settings = {
+      dots: false,
+      infinite: true,
+      speed: 5000, // Slow down the transition speed for smooth scrolling
+      slidesToShow: 5,
+      slidesToScroll: 1,
+      autoplay: true,
+      autoplaySpeed: 0, // Set autoplaySpeed to 0 for continuous scrolling
+      cssEase: "linear",
+      variableWidth: true,
+      pauseOnHover: false,
+    };
     useEffect(() => {
         if (animationContainer.current) {
             animationInstance.current = lottie.loadAnimation({
@@ -64,7 +80,7 @@ const Home: NextPage = () => {
             animationInstance.current?.destroy();
         };
     }, []);
-
+    const films = [Film1, Film2, Film3, Film4, Film5];
   return (
     <>
       <div className="flex flex-col items-center justify-center" style={{width: '100%', height: '100vh', overflow: 'hidden', position:'relative'}}>
@@ -205,7 +221,10 @@ const Home: NextPage = () => {
       </div>
       
       <div className="bg-darkgray flex flex grid grid-cols-8 py-14 grid-rows-2 gap-6 w-10/10" style={{height:'100vh', position:'relative', zIndex:100, paddingTop:'100px',paddingBottom:'150px'}}>
-        <div className="col-span-3 row-span-1 flex flex-col px-14">
+        <div style={{position:'absolute', width:'100%', height:'100%', backgroundImage:`url('/hero/overlay.jpg')`, mixBlendMode: 'screen', opacity:'10%'}}>
+
+        </div>
+        <div className="col-span-3 row-span-1 flex flex-col px-14" style={{zIndex:100}}>
           <p className='font-bold text-3xl text-white tracking-tightest leading-tightest' style={{fontSize:'90px'}}>Most Recent<br/>Events</p>
           <p className='font-normal text-lg mt-8 text-white tracking-tightest leading-tightest w-10/12'>Peep our latest hangouts and events. It was sich a vibe fr and we can't wait for the next one. We know you're feeling the fomo, so why not give in and sign up?</p>
           <button className="p-[3px] relative w-4/12 mt-9">
@@ -283,25 +302,19 @@ const Home: NextPage = () => {
           </CardContainer>
         </div>
         <div className="col-span-8 row-span-1 flex flex-row mt-14 py-14 relative" style={{marginTop:'120px', height:'100%'}}>
-          <div className='relative flex justify-center items-center' style={{width: '400px'}}>
-            <Image src={Film1} width={800} height={100} alt="Film BG" style={{position:'absolute', height:'100%',width:'100%',objectFit:'cover',zIndex:'100'}} />
-            <Image src={FilmBG} width={800} height={100} alt="Film BG" style={{position:'absolute', width:'100%', zIndex:'99'}} />
-          </div>
-          <div className='relative flex justify-center items-center' style={{width: '400px'}}>
-            <Image src={Film2} width={800} height={100} alt="Film BG" style={{position:'absolute', height:'100%',width:'100%',objectFit:'cover',zIndex:'100'}} />
-            <Image src={FilmBG} width={800} height={100} alt="Film BG" style={{position:'absolute', width:'100%', zIndex:'99'}} />
-          </div>
-          <div className='relative flex justify-center items-center' style={{width: '400px'}}>
-            <Image src={Film3} width={800} height={100} alt="Film BG" style={{position:'absolute', height:'100%',width:'100%',objectFit:'cover',zIndex:'100'}} />
-            <Image src={FilmBG} width={800} height={100} alt="Film BG" style={{position:'absolute', width:'100%', zIndex:'99'}} />
-          </div>
-          <div className='relative flex justify-center items-center' style={{width: '400px'}}>
-            <Image src={Film4} width={800} height={100} alt="Film BG" style={{position:'absolute', height:'100%',width:'100%',objectFit:'cover',zIndex:'100'}} />
-            <Image src={FilmBG} width={800} height={100} alt="Film BG" style={{position:'absolute', width:'100%', zIndex:'99'}} />
-          </div>
-          <div className='relative flex justify-center items-center' style={{width: '400px'}}>
-            <Image src={Film4} width={800} height={100} alt="Film BG" style={{position:'absolute', height:'100%',width:'100%',objectFit:'cover',zIndex:'100'}} />
-            <Image src={FilmBG} width={800} height={100} alt="Film BG" style={{position:'absolute', width:'100%', zIndex:'99'}} />
+          <div style={{ width: '100%', overflow: 'hidden', height:'100%' }}>
+            <Slider {...settings}>
+              {[...films, ...films].map((film, index) => (
+                <>
+                <div key={index} style={{ width: '400px', height: '100%', position: 'relative' }}>
+                  <Image src={film} width={800} height={100} alt="Film BG" className='w-9/10 h-9/10' layout='responsive' />
+                  <Image src={FilmBG} width={800} height={100} alt="Film BG" className="" style={{ position:'absolute',zIndex:150}} layout='responsive' />
+                  
+                </div>
+                
+                </>
+              ))}
+            </Slider>
           </div>
           
         </div>

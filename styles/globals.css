@@ -5,3 +5,30 @@ body {
     background-color: #0A0A0A;
   }
   
+  @keyframes scroll {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-100%);
+    }
+  }
+  
+  .film-strip-container {
+    display: flex;
+    overflow-x: hidden;
+    width: 100%;
+    position: relative;
+  }
+  
+  .film-strip {
+    display: flex;
+    min-width: 100%;
+    animation: scroll 30s linear infinite;
+  }
+  
+  .film-frame {
+    width: 400px;
+    flex-shrink: 0;
+    position: relative;
+  }
