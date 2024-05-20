@@ -18,6 +18,9 @@ import Film2 from '../public/hero/film2.jpg'
 import Film3 from '../public/hero/film3.jpg'
 import Film4 from '../public/hero/film4.jpg'
 import Film5 from '../public/hero/film5.jpg'
+import Star from '../public/hero/star.png'
+import Ticket from '../public/hero/ticket.png'
+import Camera from '../public/hero/camera.png'
 import Overlay from '../public/hero/overlay.jpg'
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
@@ -36,7 +39,7 @@ const Home: NextPage = () => {
       autoplay: true,
       autoplaySpeed: 0, // Set autoplaySpeed to 0 for continuous scrolling
       cssEase: "linear",
-      variableWidth: true,
+      variableWidth: false,
       pauseOnHover: false,
     };
     useEffect(() => {
@@ -220,22 +223,75 @@ const Home: NextPage = () => {
         <div ref={animationContainer} style={{  zIndex:50,height: 'auto', margin: '0 auto', position: fixed? 'fixed' : 'relative',top: '50%', transform: 'translateY(-50%)', width:'100%' }}></div>
       </div>
       
-      <div className="bg-darkgray flex flex grid grid-cols-8 py-14 grid-rows-2 gap-6 w-10/10" style={{height:'100vh', position:'relative', zIndex:100, paddingTop:'100px',paddingBottom:'150px'}}>
-        <div style={{position:'absolute', width:'100%', height:'100%', backgroundImage:`url('/hero/overlay.jpg')`, mixBlendMode: 'screen', opacity:'10%'}}>
+      <div className="bg-darkgray flex flex-col w-10/10 justofy-center py-14" style={{position:'relative', zIndex:100, justifyContent:'center', paddingTop:'100px', paddingBottom:'100px'}}>
+        <div style={{position:'absolute', width:'100%', height:'100%', backgroundImage:`url('/hero/overlay.jpg')`, mixBlendMode: 'screen', opacity:'30%'}}>
 
         </div>
-        <div className="col-span-3 row-span-1 flex flex-col px-14" style={{zIndex:100}}>
-          <p className='font-bold text-3xl text-white tracking-tightest leading-tightest' style={{fontSize:'90px'}}>Most Recent<br/>Events</p>
-          <p className='font-normal text-lg mt-8 text-white tracking-tightest leading-tightest w-10/12'>Peep our latest hangouts and events. It was sich a vibe fr and we can't wait for the next one. We know you're feeling the fomo, so why not give in and sign up?</p>
-          <button className="p-[3px] relative w-4/12 mt-9">
-            <div className="absolute inset-0 bg-gradient-to-r from-orange to-orange rounded-lg" />
-            <div className="px-4 py-2  bg-black rounded-[6px]  relative group transition duration-200 text-white hover:bg-transparent">
-              Lit up borders
-            </div>
-          </button>
+        <div style={{position:'absolute', width:'200px',zIndex:100, right:250,top:100}}>
+            <Image
+              src={Star}
+              height="1000"
+              width="1000"
+              className="h-full w-full object-cover rounded-xl group-hover/card:shadow-xl"
+              alt="thumbnail"
+            />
         </div>
-        
-        <div className="col-span-5 row-span-1 flex flex-row justify-between items-start px-14">
+        <div style={{position:'absolute', width:'400px',zIndex:10, left:250,bottom:250,transform: "rotate(-25deg)" }}>
+            <Image
+              src={Ticket}
+              height="1000"
+              width="1000"
+              className="h-full w-full object-cover rounded-xl group-hover/card:shadow-xl"
+              alt="thumbnail"
+            />
+        </div>
+        <div style={{position:'absolute', width:'300px',zIndex:10, right:250,bottom:-80,transform: "rotate(-25deg)" }}>
+            <Image
+              src={Camera}
+              height="1000"
+              width="1000"
+              className="h-full w-full object-cover rounded-xl group-hover/card:shadow-xl"
+              alt="thumbnail"
+            />
+        </div>
+        <p className='font-bold text-3xl text-white tracking-tightest leading-tightest relative px-14' style={{fontSize:'70px', textAlign:'start'}}>Our Latest Events</p>
+        <div className="flex flex-row px-14 mt-14 mb-10" style={{position:'relative',zIndex:100}}>
+          <div className="mt-6 mr-14" style={{ transform: "rotate(3deg)" }}>
+          <CardContainer className="inter-var px-2 py-0 mx-0 my-0 w-5/10" >
+            <CardBody className="bg-white relative group/card  dark:hover:shadow-2xl dark:hover:shadow-emerald-500/[0.1] dark:bg-black dark:border-white/[0.2] border-black/[0.1] w-full  h-auto rounded-xl p-4 border  ">
+              
+              <CardItem
+                translateZ="100"
+                rotateX={0}
+                rotateZ={0}
+                className="w-full mt-4"
+              
+              >
+                <Image
+                  src={Event1}
+                  height="1000"
+                  width="1000"
+                  className="h-full w-full object-cover rounded-xl group-hover/card:shadow-xl"
+                  alt="thumbnail"
+                />
+              </CardItem>
+              <CardItem
+                translateZ="30"
+                className="text-xl font-bold text-black mt-6 dark:text-white"
+              >
+                Make things float in air
+              </CardItem>
+              <CardItem
+                as="p"
+                translateZ="30"
+                className="text-black text-sm max-w-sm dark:text-neutral-300"
+              >
+                Hover over this card to unleash the power of CSS perspective
+              </CardItem>
+            </CardBody>
+          </CardContainer>
+          </div>
+          <div className="ml-5 mt-14" style={{ marginRight:'-160px', marginTop:'-100px', transform: "rotate(-6deg)" }}>
           <CardContainer className="inter-var px-2 py-0 mx-0 my-0 w-5/10">
             <CardBody className="bg-white relative group/card  dark:hover:shadow-2xl dark:hover:shadow-emerald-500/[0.1] dark:bg-black dark:border-white/[0.2] border-black/[0.1] w-full  h-auto rounded-xl p-4 border  ">
               
@@ -268,6 +324,8 @@ const Home: NextPage = () => {
               </CardItem>
             </CardBody>
           </CardContainer>
+          </div>
+          <div className="mt-10" style={{ transform: "rotate(1deg)"}}>
           <CardContainer className="inter-var px-2 py-0 mx-0 my-0 w-5/10">
             <CardBody className="bg-white relative group/card  dark:hover:shadow-2xl dark:hover:shadow-emerald-500/[0.1] dark:bg-black dark:border-white/[0.2] border-black/[0.1] w-full  h-auto rounded-xl p-4 border  ">
               
@@ -300,15 +358,18 @@ const Home: NextPage = () => {
               </CardItem>
             </CardBody>
           </CardContainer>
+          </div>
         </div>
-        <div className="col-span-8 row-span-1 flex flex-row mt-14 py-14 relative" style={{marginTop:'120px', height:'100%'}}>
-          <div style={{ width: '100%', overflow: 'hidden', height:'100%' }}>
+        
+        
+        <div className="flex flex-row mt-14 mb-0">
+          <div style={{ width: '100%', overflow: 'hidden', zIndex:200 }}>
             <Slider {...settings}>
               {[...films, ...films].map((film, index) => (
                 <>
                 <div key={index} style={{ width: '400px', height: '100%', position: 'relative' }}>
-                  <Image src={film} width={800} height={100} alt="Film BG" className='w-9/10 h-9/10' layout='responsive' />
-                  <Image src={FilmBG} width={800} height={100} alt="Film BG" className="" style={{ position:'absolute',zIndex:150}} layout='responsive' />
+                  <Image src={film} width={800} height={100} alt="Film BG" className='w-9/10 h-9/10' layout='responsive'  style={{ position:'absolute',zIndex:150, top:15}}  />
+                  <Image src={FilmBG} width={800} height={100} alt="Film BG" className="" style={{position:'relative',zIndex:100}} layout='responsive' />
                   
                 </div>
                 

@@ -26,7 +26,10 @@ body {
     min-width: 100%;
     animation: scroll 30s linear infinite;
   }
-  
+  .rotated-card-container {
+    transform: rotate(10deg);
+    transition: transform 0.3s;
+  }
   .film-frame {
     width: 400px;
     flex-shrink: 0;

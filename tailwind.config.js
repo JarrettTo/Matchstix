@@ -17,6 +17,9 @@ module.exports = {
       animation: {
         shimmer: "shimmer 2s linear infinite",
       },
+      rotate: {
+        'custom': '100deg', // Custom rotation angle
+      },
       keyframes: {
         shimmer: {
           from: {
