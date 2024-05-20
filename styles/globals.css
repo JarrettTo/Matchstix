@@ -13,7 +13,9 @@ body {
       transform: translateX(-100%);
     }
   }
-  
+  html {
+    scroll-behavior: smooth;
+  }
   .film-strip-container {
     display: flex;
     overflow-x: hidden;
@@ -34,4 +36,22 @@ body {
     width: 400px;
     flex-shrink: 0;
     position: relative;
+  }
+  .p-styled {
+    font-family: 'Ibarra Real Nova, serif';
+    text-align: center;
+    font-size: 140px;
+    line-height: 100px;
+    color: #FFF1D6;
+    -webkit-text-stroke-width: 3px;
+    -webkit-text-stroke-color: #FFF1D6;
+    letter-spacing: -10px;
+  }
+  
+  /* Responsive styles for screen widths less than 768px */
+  @media (max-width: 768px) {
+    .p-styled {
+      font-size: 60px;
+      line-height: 70px;
+    }
   }

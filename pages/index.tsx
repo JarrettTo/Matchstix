@@ -24,24 +24,33 @@ import Camera from '../public/hero/camera.png'
 import Overlay from '../public/hero/overlay.jpg'
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
+import styles from '../styles/styles.module.css';
 import { cn } from '../utils/cn';
 import { ButtonsCard } from '../components/ui/button';
+import { FormComponent } from '../components/typeform';
 const Home: NextPage = () => {
   const animationContainer = useRef<HTMLDivElement>(null);
     const animationInstance = useRef<any>(null);
+    const joinDivRef = useRef<HTMLDivElement>(null);
+    
     const [fixed, setFixed] = useState(true)
-    const settings = {
+    const [slideSettings, setSlideSettings] = useState({
       dots: false,
       infinite: true,
-      speed: 5000, // Slow down the transition speed for smooth scrolling
+      speed: 5000,
       slidesToShow: 5,
       slidesToScroll: 1,
       autoplay: true,
-      autoplaySpeed: 0, // Set autoplaySpeed to 0 for continuous scrolling
-      cssEase: "linear",
+      autoplaySpeed: 0,
+      cssEase: 'linear',
       variableWidth: false,
       pauseOnHover: false,
+    });
+  
+    const scrollToDiv = () => {
+      joinDivRef.current?.scrollIntoView({ behavior: 'smooth' });
     };
+    
     useEffect(() => {
         if (animationContainer.current) {
             animationInstance.current = lottie.loadAnimation({
@@ -76,54 +85,68 @@ const Home: NextPage = () => {
         };
 
         window.addEventListener('scroll', handleScroll);
-        
+        function updateSliderSettings() {
+          const width = window.innerWidth;
+          let slidesToShow = 5;
+          let variableWidth = false;
+          if (width < 600) {
+            slidesToShow = 1;
+            variableWidth = true;
+          } else if (width < 1024) {
+            slidesToShow = 2;
+            variableWidth = false;
+          }
+          setSlideSettings((prevSettings) => ({
+            ...prevSettings,
+            slidesToShow,
+            variableWidth
+          }));
+        }
+    
+        updateSliderSettings();
+        window.addEventListener('resize', updateSliderSettings);
+    
+
 
         return () => {
+          window.removeEventListener('resize', updateSliderSettings);
             window.removeEventListener('scroll', handleScroll);
             animationInstance.current?.destroy();
         };
     }, []);
     const films = [Film1, Film2, Film3, Film4, Film5];
   return (
-    <>
-      <div className="flex flex-col items-center justify-center" style={{width: '100%', height: '100vh', overflow: 'hidden', position:'relative'}}>
+    <div style={{scrollBehavior:'smooth'}}>
+      <div className="flex flex-col items-center justify-center" style={{width: '100%', height: '100vh', overflow: 'hidden', position:'relative', scrollBehavior:'smooth'}}>
         <video id="background-video" muted loop autoPlay style={{ width: '100%', height: '100%', objectFit: 'cover',fontWeight: 'bold',  position:'absolute', zIndex:'100', top: 0, left: 0 }}>
           <source src="/hero/bg_video.mp4" type="video/mp4" />
         </video>
         
         <div className='flex flex-col relative w-full h-full justify-center items-center' style={{width:'100%', height:'60%'}}>
         
-          <div className='flex flex-row justify-center w-8/10' style={{ textAlign: 'center', color: 'white',  position:'relative', height:'60%' }}>
+          <div className='flex flex-row justify-center w-9/10' style={{ textAlign: 'center', color: 'white',  position:'relative' }}>
             <Image src={VectorBG} className="px-12" alt="vector" width={40} height={10} style={{ width: '70%', objectFit: 'cover', fontWeight: 'bold', zIndex: 150, position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }} />            
-            <svg width="100%" viewBox="0 0 1000 500" style={{zIndex: 250}} xmlns="http://www.w3.org/2000/svg">
-              <text x="50%" y="39%" dominantBaseline="middle" textAnchor="middle" style={{ fontFamily: 'Ibarra Real Nova, serif', fontSize: '200px', letterSpacing: '-10px',  fill: '#FFF1D6', stroke: '#FFF1D6', strokeWidth: '12px' }}>
-                Touch Some Grass
-              </text>
-              <text x="50%" y="65%" dominantBaseline="middle" textAnchor="middle" style={{ fontFamily: 'Ibarra Real Nova, serif', fontSize: '200px', letterSpacing: '-10px', fill: '#FFF1D6', stroke: '#FFF1D6', strokeWidth: '12px'}}>
-                with Matchstix.
-              </text>
-            </svg>
+            <p className={styles['p-styled']}>
+              Touch some grass<br/>
+              with Matchstix.
+            </p>
+            
           </div>
-          <div className='flex flex-row w-7/10 justify-between'>
-          <div style={{ display: 'flex', alignItems: 'center', zIndex:200 }}>
-            <svg height="80" viewBox="0 0 200 80" style={{ cursor: 'pointer' }}>
-              <text x="50%" y="50%" dominantBaseline="middle" textAnchor="middle" style={{ fontFamily: 'Ibarra Real Nova, serif', fontSize: '45px', letterSpacing: '-2px', fill: '#FFF1D6', stroke: '#FFF1D6', strokeWidth: '2px' }}>
+          
+          <div className='flex flex-row w-7/10 justify-between mt-2 sm:mt-2 md:mt-2 lg:mt-7'>
+            <div style={{ display: 'flex', alignItems: 'center', zIndex:200 }}>
+              <p className={styles['hero-button']}>
                 about us
-              </text>
-            </svg>
-            <span style={{ margin: '0 30px', color: '#FFF1D6', fontSize: '45px' }}>|</span>
-            <svg height="80" viewBox="0 0 200 80" style={{ cursor: 'pointer' }}>
-              <text x="50%" y="50%" dominantBaseline="middle" textAnchor="middle" style={{ fontFamily: 'Ibarra Real Nova, serif', fontSize: '45px', letterSpacing: '-2px', fill: '#FFF1D6', stroke: '#FFF1D6', strokeWidth: '2px' }}>
+              </p>
+              <span className={styles['span-divider']}>|</span>
+              <p className={styles['hero-button']} onClick={scrollToDiv}>
                 join us
-              </text>
-            </svg>
-            <span style={{ margin: '0 30px', color: '#FFF1D6', fontSize: '45px' }}>|</span>
-            <svg height="80" viewBox="0 0 200 80" style={{ cursor: 'pointer' }}>
-              <text x="50%" y="50%" dominantBaseline="middle" textAnchor="middle" style={{ fontFamily: 'Ibarra Real Nova, serif', fontSize: '45px', letterSpacing: '-2px', fill: '#FFF1D6', stroke: '#FFF1D6', strokeWidth: '2px' }}>
+              </p>
+              <span className={styles['span-divider']}>|</span>
+              <p className={styles['hero-button']} onClick={scrollToDiv}>
                 organize
-              </text>
-            </svg>
-          </div>
+              </p>
+            </div>
           </div>
         </div>
         <div className='flex flex-col relative justify-center items-center' style={{width:'100%', marginTop:'100px', zIndex:200 }}>
@@ -170,19 +193,18 @@ const Home: NextPage = () => {
               </div>
             </div>
           </div>
-          <div style={{ marginTop:'15px',height:'30px'}}>
-            <svg height="100%" width="100%"  viewBox="0 0 2500 80" style={{ cursor: 'pointer' }}>
-              <text x="50%" y="50%" dominantBaseline="middle" textAnchor="middle" style={{ fontFamily: 'Ibarra Real Nova, serif', fontSize: '50px',letterSpacing: '-1px', fill: '#FFF1D6', stroke: '#FFF1D6', strokeWidth: '1px' }}>
-                © 2024 Matchstix. All rights reserved. Unauthorized use or reproduction is strictly prohibited. Fugg it we ball, typeshi.
-              </text>
-            </svg>
+          <div style={{ marginTop:'15px',height:'30px', maxWidth:'75%'}}>
+    
+            <p className={styles['copyright']}>
+              © 2024 Matchstix. All rights reserved. Unauthorized use or reproduction is strictly prohibited. Waffle Daffle.
+            </p>
           </div>
           
         </div>
       </div>
 
 
-      <div className="h-[50rem] w-full dark:bg-black bg-black  relative flex items-center justify-center" style={{height:'200vh', width:'100%', position:'relative'}}>
+      <div className="h-[50rem] w-full dark:bg-black bg-black  relative flex items-center justify-center" style={{height:'150vh', width:'100%', position:'relative'}}>
         <div style={{position:'absolute', width:'100%', height:'100%', backgroundImage:`url('/hero/overlay.jpg')`, mixBlendMode: 'screen', opacity:'10%', zIndex:20}}>
 
         </div>
@@ -190,20 +212,26 @@ const Home: NextPage = () => {
           zIndex:49,
           height: '100vh', // Adjust height as needed
           width: '100%', // Adjust width as needed
-          background: 'radial-gradient(circle, #212428 10%, transparent 80%)',
+
           position: fixed? 'fixed' : 'relative',top: '50%', transform: 'translateY(-50%)',
         }}>
-          <p className='font-bold text-3xl text-white tracking-tightest leading-tightest' style={{fontSize:'70px', textAlign:'center', position:'relative', zIndex:50}}>Makes Memories With<br/>The Right People</p>
-          <p className='font-normal text-lg mt-8 text-white tracking-tightest leading-tightest items-center w-4/12' style={{textAlign:'center',position:'relative', zIndex:50}}>Peep our latest hangouts and events. It was sich a vibe fr and we can't wait for the next one. We know you're feeling the fomo, so why not give in and sign up?</p>
+          <p className={styles['p-styled-2']}>
+            Make memories with<br/>
+            the right people.
+          </p>
+          <p className={styles['p-styled-sub']}>
+            © 2024 Matchstix. All rights reserved. Unauthorized use or reproduction is strictly prohibited. Waffle Daffle.
+          </p>
+          
         </div>
-        <div ref={animationContainer} style={{  zIndex:50,height: 'auto', margin: '0 auto', position: fixed? 'fixed' : 'relative',top: '50%', transform: 'translateY(-50%)', width:'100%' }}></div>
+        <div ref={animationContainer} className={styles['animation']} style={{  zIndex:50,height: 'auto', margin: '0 auto', position: fixed? 'fixed' : 'relative',top: '50%', transform: 'translateY(-50%)' }}></div>
       </div>
       
-      <div className="bg-darkgray flex flex-col w-10/10 justofy-center py-14" style={{position:'relative', zIndex:100, justifyContent:'center', paddingTop:'100px', paddingBottom:'100px'}}>
+      <div className="bg-darkgray flex flex-col w-10/10 justofy-center py-14" style={{position:'relative', zIndex:100, justifyContent:'center', paddingTop:'100px', paddingBottom:'100px', overflow:'hidden'}}>
         <div style={{position:'absolute', width:'100%', height:'100%', backgroundImage:`url('/hero/overlay.jpg')`, mixBlendMode: 'screen', opacity:'30%'}}>
 
         </div>
-        <div style={{position:'absolute', width:'200px',zIndex:100, right:250,top:100}}>
+        <div className={styles['star']} >
             <Image
               src={Star}
               height="1000"
@@ -212,7 +240,7 @@ const Home: NextPage = () => {
               alt="thumbnail"
             />
         </div>
-        <div style={{position:'absolute', width:'400px',zIndex:10, left:250,bottom:250,transform: "rotate(-25deg)" }}>
+        <div className={styles['ticket']} >
             <Image
               src={Ticket}
               height="1000"
@@ -221,7 +249,7 @@ const Home: NextPage = () => {
               alt="thumbnail"
             />
         </div>
-        <div style={{position:'absolute', width:'300px',zIndex:10, right:250,bottom:-80,transform: "rotate(-25deg)" }}>
+        <div className={styles['camera']} >
             <Image
               src={Camera}
               height="1000"
@@ -230,10 +258,16 @@ const Home: NextPage = () => {
               alt="thumbnail"
             />
         </div>
-        <p className='font-bold text-3xl text-white tracking-tightest leading-tightest relative px-14' style={{fontSize:'70px', textAlign:'start'}}>Our Latest Events</p>
-        <div className="flex flex-row px-14 mt-14 mb-10" style={{position:'relative',zIndex:100}}>
-          <div className="mt-6 mr-14" style={{ transform: "rotate(3deg)" }}>
-          <CardContainer className="inter-var px-2 py-0 mx-0 my-0 w-5/10" >
+      
+        <div className='flex flex-col relative ml-14 mr-0 px-0 w-10/10'>
+          <p className={styles['p-styled-3']}>
+            Our recent events.
+          </p>
+
+        </div>
+        <div className="flex flex-col md:flex-row justify-center mt-14 mb-10" style={{position:'relative',zIndex:100}}>
+          <div className={styles['card1']} >
+          <CardContainer className="inter-var py-0 mx-0 my-0 w-10/10">
             <CardBody className="bg-white relative group/card  dark:hover:shadow-2xl dark:hover:shadow-emerald-500/[0.1] dark:bg-black dark:border-white/[0.2] border-black/[0.1] w-full  h-auto rounded-xl p-4 border  ">
               
               <CardItem
@@ -267,7 +301,7 @@ const Home: NextPage = () => {
             </CardBody>
           </CardContainer>
           </div>
-          <div className="ml-5 mt-14" style={{ marginRight:'-160px', marginTop:'-100px', transform: "rotate(-6deg)" }}>
+          <div className={styles['card2']} style={{  }}>
           <CardContainer className="inter-var px-2 py-0 mx-0 my-0 w-5/10">
             <CardBody className="bg-white relative group/card  dark:hover:shadow-2xl dark:hover:shadow-emerald-500/[0.1] dark:bg-black dark:border-white/[0.2] border-black/[0.1] w-full  h-auto rounded-xl p-4 border  ">
               
@@ -340,7 +374,7 @@ const Home: NextPage = () => {
         
         <div className="flex flex-row mt-14 mb-0">
           <div style={{ width: '100%', overflow: 'hidden', zIndex:200 }}>
-            <Slider {...settings}>
+            <Slider {...slideSettings}>
               {[...films, ...films].map((film, index) => (
                 <>
                 <div key={index} style={{ width: '400px', height: '100%', position: 'relative' }}>
@@ -356,355 +390,14 @@ const Home: NextPage = () => {
           
         </div>
       </div>
-      
-      <div className="bg-darkgray text-white min-h-screen p-14 grid grid-cols-4 grid-rows-10 gap-6" style={{zIndex:100, position:'relative', paddingTop:'150px'}}>
-     
-        <div className="col-span-1 row-span-6" style={{ height: '500px', overflow: 'hidden', position:'relative'}}>
-          <CardContainer className="inter-var px-0 py-0 mx-0 my-0 w-full">
-              <CardBody className="bg-navyblue-600 relative group/card  dark:hover:shadow-2xl dark:hover:shadow-emerald-500/[0.1] dark:bg-black dark:border-white/[0.2] border-black/[0.1] w-full  h-auto rounded-xl p-6 border  ">
-                <CardItem
-                  translateZ="30"
-                  className="text-xl font-bold text-white dark:text-white"
-                >
-                  Make things float in air
-                </CardItem>
-                <CardItem
-                  as="p"
-                  translateZ="30"
-                  className="text-white text-sm max-w-sm mt-2 dark:text-neutral-300"
-                >
-                  Hover over this card to unleash the power of CSS perspective
-                </CardItem>
-                <CardItem
-                  translateZ="100"
-                  rotateX={0}
-                  rotateZ={0}
-                  className="w-full mt-4"
-                >
-                  <Image
-                    src={Feature1}
-                    height="1000"
-                    width="1000"
-                    className="h-80 w-full object-cover rounded-xl group-hover/card:shadow-xl"
-                    alt="thumbnail"
-                  />
-                </CardItem>
-                <div className="flex justify-between items-center mt-0">
-                  <CardItem
-                    translateZ={20}
-                    translateX={-40}
-                    as="button"
-                    className="px-4 py-2 rounded-xl text-xs font-normal dark:text-white"
-                  >
-                    Try now →
-                  </CardItem>
-                  <CardItem
-                    translateZ={30}
-                    translateX={0}
-                    as="button"
-                    className="px-4 py-2 rounded-xl bg-black dark:bg-white dark:text-black text-white text-xs font-bold"
-                  >
-                    Sign up
-                  </CardItem>
-                </div>
-              </CardBody>
-            </CardContainer>
-          
-        </div>
+           
+      <div ref={joinDivRef} className="flex flex-col justify-center items-center" style={{zIndex:100, backgroundColor:'#000000', position:'relative', width:'100%', height:'100vh'}}>
+        <FormComponent/>
         
-        {/* Middle-right register form */}
-        <div className="col-span-2 row-span-6" >
-          <CardContainer className="inter-var px-0 py-0 mx-0 my-0 w-full">
-              <CardBody className="bg-navyblue-600 relative group/card  dark:hover:shadow-2xl dark:hover:shadow-emerald-500/[0.1] dark:bg-black dark:border-white/[0.2] border-black/[0.1] w-full  h-auto rounded-xl p-6 border  ">
-                <CardItem
-                  translateZ="30"
-                  className="text-xl font-bold text-white dark:text-white"
-                >
-                  Our Most Recent Events
-                </CardItem>
-                <CardItem
-                  as="p"
-                  translateZ="30"
-                  className="text-white text-sm max-w-sm mt-2 dark:text-neutral-300"
-                >
-                  Last night was a movie, typeshi.
-                </CardItem>
-                <CardItem
-                  translateZ="100"
-                  rotateX={0}
-                  rotateZ={0}
-                  className="w-full mt-4"
-                >
-                  <Slider
-                    dots={false}
-                    infinite={true}
-                    speed={500}
-                    slidesToShow={1}
-                    slidesToScroll={1}
-                    autoplay={true}
-                    autoplaySpeed={3000}
-                  >
-                    <Image
-                      src={Event1}
-                      height="1000"
-                      width="1000"
-                      className="h-80 w-full object-cover rounded-xl"
-                      alt="Event Image 1"
-                    />
-                    <Image
-                      src={Event2}
-                      height="1000"
-                      width="1000"
-                      className="h-80 w-full object-cover rounded-xl"
-                      alt="Event Image 2"
-                    />
-                    <Image
-                      src={Event3}
-                      height="1000"
-                      width="1000"
-                      className="h-80 w-full object-cover rounded-xl"
-                      alt="Event Image 3"
-                    />
-                  </Slider>
-                </CardItem>
-                <div className="flex justify-between items-center mt-5">
-                  <CardItem
-                    translateZ={20}
-                    translateX={-40}
-                    as="button"
-                    className="px-4 py-2 rounded-xl text-xs font-normal dark:text-white"
-                  >
-                    Try now →
-                  </CardItem>
-                  <CardItem
-                    translateZ={30}
-                    translateX={0}
-                    as="button"
-                    className="px-4 py-2 rounded-xl bg-black dark:bg-white dark:text-black text-white text-xs font-bold"
-                  >
-                    Sign up
-                  </CardItem>
-                </div>
-              </CardBody>
-            </CardContainer>
-          
-          
-        </div>
-        <div className="col-span-1 row-span-12 grid grid-cols-1 grid-rows-10 gap-8" style={{position:'relative'}}>
-          
-          <div className="col-span-1 row-span-4">
-            <CardContainer className="inter-var px-0 py-0 mx-0 my-0 w-full">
-              <CardBody className="bg-navyblue-600 relative group/card  dark:hover:shadow-2xl dark:hover:shadow-emerald-500/[0.1] dark:bg-black dark:border-white/[0.2] border-black/[0.1] w-full  h-auto rounded-xl p-6 border  ">
-                <CardItem
-                  translateZ="30"
-                  className="text-xl font-bold text-white dark:text-white"
-                >
-                  Make things float in air
-                </CardItem>
-                <CardItem
-                  as="p"
-                  translateZ="30"
-                  className="text-white text-sm max-w-sm mt-2 dark:text-neutral-300"
-                >
-                  Hover over this card to unleash the power of CSS perspective
-                </CardItem>
-                <CardItem
-                  translateZ="100"
-                  rotateX={0}
-                  rotateZ={0}
-                  className="w-full mt-4"
-                >
-                  <Image
-                    src={Feature1}
-                    height="1000"
-                    width="1000"
-                    className="h-full w-full object-cover rounded-xl group-hover/card:shadow-xl"
-                    alt="thumbnail"
-                  />
-                </CardItem>
-                <div className="flex justify-between items-center mt-0">
-                  <CardItem
-                    translateZ={20}
-                    translateX={-40}
-                    as="button"
-                    className="px-4 py-2 rounded-xl text-xs font-normal dark:text-white"
-                  >
-                    Try now →
-                  </CardItem>
-                  <CardItem
-                    translateZ={30}
-                    translateX={0}
-                    as="button"
-                    className="px-4 py-2 rounded-xl bg-black dark:bg-white dark:text-black text-white text-xs font-bold"
-                  >
-                    Sign up
-                  </CardItem>
-                </div>
-              </CardBody>
-            </CardContainer>
-          </div>
-          <div className="col-span-1 row-span-6" style={{ height: '500px', overflow: 'hidden', position:'relative', zIndex: 2}}>
-            <CardContainer className="inter-var px-0 py-0 mx-0 my-0 w-full">
-              <CardBody className="bg-navyblue-600 relative group/card  dark:hover:shadow-2xl dark:hover:shadow-emerald-500/[0.1] dark:bg-black dark:border-white/[0.2] border-black/[0.1] w-full  h-auto rounded-xl p-6 border  ">
-                <CardItem
-                  translateZ="30"
-                  className="text-xl font-bold text-white dark:text-white"
-                >
-                  Make things float in air
-                </CardItem>
-                <CardItem
-                  as="p"
-                  translateZ="30"
-                  className="text-white text-sm max-w-sm mt-2 dark:text-neutral-300"
-                >
-                  Hover over this card to unleash the power of CSS perspective
-                </CardItem>
-                <CardItem
-                  translateZ="100"
-                  rotateX={0}
-                  rotateZ={0}
-                  className="w-full mt-4"
-                >
-                  <Image
-                    src={Feature1}
-                    height="1000"
-                    width="1000"
-                    className="h-80 w-full object-cover rounded-xl group-hover/card:shadow-xl"
-                    alt="thumbnail"
-                  />
-                </CardItem>
-                <div className="flex justify-between items-center mt-0">
-                  <CardItem
-                    translateZ={20}
-                    translateX={-40}
-                    as="button"
-                    className="px-4 py-2 rounded-xl text-xs font-normal dark:text-white"
-                  >
-                    Try now →
-                  </CardItem>
-                  <CardItem
-                    translateZ={30}
-                    translateX={0}
-                    as="button"
-                    className="px-4 py-2 rounded-xl bg-black dark:bg-white dark:text-black text-white text-xs font-bold"
-                  >
-                    Sign up
-                  </CardItem>
-                </div>
-              </CardBody>
-            </CardContainer>
-          </div>
-        </div>
-
-        {/* Bottom-left event info */}
-        <div className="col-span-2 row-span-4 flex flex-col">
-          <CardContainer className="inter-var px-0 py-0 mx-0 my-0 w-full">
-            <CardBody className="bg-navyblue-600 relative group/card  dark:hover:shadow-2xl dark:hover:shadow-emerald-500/[0.1] dark:bg-black dark:border-white/[0.2] border-black/[0.1] w-full  h-auto rounded-xl p-6 border  ">
-              <CardItem
-                translateZ="30"
-                className="text-xl font-bold text-white dark:text-white"
-              >
-                Make things float in air
-              </CardItem>
-              <CardItem
-                as="p"
-                translateZ="30"
-                className="text-white text-sm max-w-sm mt-2 dark:text-neutral-300"
-              >
-                Hover over this card to unleash the power of CSS perspective
-              </CardItem>
-              <CardItem
-                translateZ="100"
-                rotateX={0}
-                rotateZ={0}
-                className="w-full mt-4"
-              >
-                <Image
-                  src={Feature1}
-                  height="100"
-                  width="1000"
-                  className="h-40 w-full object-cover rounded-xl group-hover/card:shadow-xl"
-                  alt="thumbnail"
-                />
-              </CardItem>
-              <div className="flex justify-between items-center mt-0">
-                <CardItem
-                  translateZ={20}
-                  translateX={-40}
-                  as="button"
-                  className="px-4 py-2 rounded-xl text-xs font-normal dark:text-white"
-                >
-                  Try now →
-                </CardItem>
-                <CardItem
-                  translateZ={30}
-                  translateX={0}
-                  as="button"
-                  className="px-4 py-2 rounded-xl bg-black dark:bg-white dark:text-black text-white text-xs font-bold"
-                >
-                  Sign up
-                </CardItem>
-              </div>
-            </CardBody>
-          </CardContainer>
-        </div>
-
-        {/* Bottom-right landscape image */}
-        <div className="col-span-1 row-span-4" >
-          <CardContainer className="inter-var px-0 py-0 mx-0 my-0 w-full">
-            <CardBody className="bg-navyblue-600 relative group/card  dark:hover:shadow-2xl dark:hover:shadow-emerald-500/[0.1] dark:bg-black dark:border-white/[0.2] border-black/[0.1] w-full  h-auto rounded-xl p-6 border  ">
-              <CardItem
-                translateZ="30"
-                className="text-xl font-bold text-white dark:text-white"
-              >
-                Make things float in air
-              </CardItem>
-              <CardItem
-                as="p"
-                translateZ="30"
-                className="text-white text-sm max-w-sm mt-2 dark:text-neutral-300"
-              >
-                Hover over this card to unleash the power of CSS perspective
-              </CardItem>
-              <CardItem
-                translateZ="100"
-                rotateX={0}
-                rotateZ={0}
-                className="w-full mt-4"
-              >
-                <Image
-                  src={Feature1}
-                  height="1000"
-                  width="1000"
-                  className="h-40 w-full object-cover rounded-xl group-hover/card:shadow-xl"
-                  alt="thumbnail"
-                />
-              </CardItem>
-              <div className="flex justify-between items-center mt-0">
-                <CardItem
-                  translateZ={20}
-                  translateX={-40}
-                  as="button"
-                  className="px-4 py-2 rounded-xl text-xs font-normal dark:text-white"
-                >
-                  Try now →
-                </CardItem>
-                <CardItem
-                  translateZ={30}
-                  translateX={0}
-                  as="button"
-                  className="px-4 py-2 rounded-xl bg-black dark:bg-white dark:text-black text-white text-xs font-bold"
-                >
-                  Sign up
-                </CardItem>
-              </div>
-            </CardBody>
-          </CardContainer>
-        </div>
 
       
+      </div>
     </div>
-    </>
     
   );
 };

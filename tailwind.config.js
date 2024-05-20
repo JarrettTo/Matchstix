@@ -13,6 +13,13 @@ module.exports = {
   purge: ['./pages/**/*.{js,ts,jsx,tsx}', './components/**/*.{js,ts,jsx,tsx}'],
   darkMode: false, // or 'media' or 'class'
   theme: {
+    screens: {
+      sm: '640px',
+      md: '768px',
+      lg: '1024px',
+      xl: '1280px',
+      '2xl': '1536px',
+    },
     extend: {
       animation: {
         shimmer: "shimmer 2s linear infinite",
@@ -43,6 +50,7 @@ module.exports = {
         '64': '4rem',  // 64 pixels is equivalent to 4rem if the base font size is 16px
       },
       colors: {
+        offwhite:'#FFF1D6',
         darkgray:'#0A0A0A',
         lightgray:'#131313',
         light: '#f3f4f6',  // Example light gray
@@ -82,6 +90,7 @@ module.exports = {
         500: '#F77F00', // Example shade for orange-500
         600: '#003049', // Darker shade for orange-600
       },
+      
       width: {
         '2/12':'16.666%',
         '6/12': '50%', // 100 * 10/12

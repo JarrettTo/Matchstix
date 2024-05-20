@@ -1,0 +1,207 @@
+.p-styled {
+    font-family: 'Ibarra Real Nova, serif';
+    text-align: center;
+    font-size: 140px;
+    line-height: 100px;
+    z-index: 200;
+    color: #FFF1D6;
+    -webkit-text-stroke-width: 3px;
+    -webkit-text-stroke-color: #FFF1D6;
+    letter-spacing: -13px;
+}
+.p-styled-2 {
+    font-family: 'Ibarra Real Nova, serif';
+    text-align: center;
+    font-size: 105px;
+    line-height: 90px;
+    z-index: 200;
+    color: #FFF1D6;
+    -webkit-text-stroke-width: 2px;
+    -webkit-text-stroke-color: #FFF1D6;
+    letter-spacing: -9px;
+}
+.p-styled-3 {
+    font-family: 'Ibarra Real Nova, serif';
+    text-align: start;
+    font-size:80px;
+    line-height: 90px;
+    z-index: 200;
+    width: 100%;
+    color: #FFF1D6;
+    -webkit-text-stroke-width: 1.7px;
+    -webkit-text-stroke-color: #FFF1D6;
+    letter-spacing: -5px;
+}
+.hero-button {
+    font-family: 'Ibarra Real Nova, serif';
+    text-align: center;
+    font-size: 50px;
+    line-height: 100px;
+    z-index: 200;
+    color: #FFF1D6;
+    -webkit-text-stroke-width: 2px;
+    -webkit-text-stroke-color: #FFF1D6;
+    letter-spacing: -2px;
+    cursor: pointer;
+}
+.span-divider {
+    margin: 0 30px;
+    color: #FFF1D6;
+    font-size: 35px 
+}
+.animation {
+    width: 100%
+}
+.star {
+    position: absolute;
+    width:100px;
+    z-index:100;
+    right: 250px;
+    top:100px;
+  
+}
+
+.ticket {
+    position: absolute;
+    width:300px;
+    z-index:100;
+    left: 250px;
+    bottom:250px;
+    transform: rotate(-25deg);
+  
+}
+.camera {
+    position: absolute;
+    width:300px;
+    z-index:100;
+    right: 250px;
+    bottom:200px;
+    transform: rotate(-65deg);
+  
+}
+.copyright{
+    font-family: 'Ibarra Real Nova, serif';
+    font-size: 20px;
+    letter-spacing: -0.5px;
+    color: #FFF1D6;
+    -webkit-text-stroke-color: #FFF1D6;
+    -webkit-text-stroke-width: 0.7px;
+}
+.p-styled-sub{
+    margin-top: 30px;
+    font-family: 'Ibarra Real Nova, serif';
+    font-size: 22px;
+    letter-spacing: -0.5px;
+    line-height: 25px;
+    text-align: center;
+    max-width: 35%;
+    color: #FFF1D6;
+    -webkit-text-stroke-color: #FFF1D6;
+    -webkit-text-stroke-width: 0.7px;
+}
+.card1{
+    margin-top: 30px;
+    margin-right: 0px;
+    width:800px;
+    transform: rotate(3deg); 
+}
+
+.card2{
+    margin-top: -20px;
+    margin-left: 20px;
+    margin-right: -40px;
+    width:500px;
+    transform: rotate(-6deg); 
+}
+  /* Responsive styles for screen widths less than 768px */
+  @media (max-width: 768px) {
+    .p-styled {
+      font-size: 50px;
+      letter-spacing: -2px;
+      line-height: 40px;
+      -webkit-text-stroke-width: 2px;
+    }
+    .p-styled-2 {
+        font-size: 45px;
+        letter-spacing: -2px;
+        line-height: 40px;
+        -webkit-text-stroke-width: 2px;
+      }
+
+    .p-styled-3 {
+        font-size: 45px;
+        position: relative;
+        z-index: 200;
+        letter-spacing: -2px;
+        line-height: 40px;
+        -webkit-text-stroke-width: 2px;
+    }
+    .hero-button {
+        -webkit-text-stroke-width: 1px;
+        letter-spacing: -1px;
+        font-size: 25px;
+    }
+    .span-divider {
+        margin: 0 10px;
+        color: #FFF1D6;
+        font-size: 25px 
+    }
+    .copyright{
+        font-family: 'Ibarra Real Nova, serif';
+        font-size: 13px;
+        text-align: center;
+        letter-spacing: 0px;
+        color: #FFF1D6;
+        line-height: 16px;
+        -webkit-text-stroke-color: #FFF1D6;
+        -webkit-text-stroke-width: 0.2px;
+    }
+    .p-styled-sub{
+        font-family: 'Ibarra Real Nova, serif';
+        font-size: 13px;
+        text-align: center;
+        letter-spacing: 0px;
+        color: #FFF1D6;
+        max-width: 65%;
+        line-height: 16px;
+        -webkit-text-stroke-color: #FFF1D6;
+        -webkit-text-stroke-width: 0.2px;
+    }
+    .animation {
+        width: 250%
+    }
+    .card1{
+        margin-top: 30px;
+
+        transform: rotate(2deg); 
+        width:100%;
+    }
+    .card2{
+        margin-top: -10px;
+
+        transform: rotate(-4deg); 
+        width:95%;
+    }
+    .star {
+        position: absolute;
+        width:100px;
+        z-index:100;
+        right: 30px;
+        top:20px;
+      
+    }
+    .ticket {
+        position: absolute;
+        width:300px;
+        z-index:100;
+        left: 250px;
+        bottom:750px;
+        transform: rotate(-25deg);
+      
+    }
+    .camera{
+        width: 200px;
+        bottom: 250px;
+    }
+
+  }
