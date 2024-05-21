@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Ibarra+Real+Nova&display=swap');
 .p-styled {
-    font-family: 'Ibarra Real Nova, serif';
+    font-family: 'Ibarra Real Nova', serif;
     text-align: center;
     font-size: 140px;
     line-height: 100px;
@@ -116,6 +116,9 @@
 }
   /* Responsive styles for screen widths less than 768px */
   @media (max-width: 768px) {
+    #events{
+        padding-bottom: 100px;
+    }
     .p-styled {
       font-size: 50px;
       letter-spacing: -2px;
@@ -205,6 +208,9 @@
         bottom: 250px;
     }
     @media (max-width: 400px) {
+        #events{
+            padding-bottom: 50px;
+        }
         .p-styled {
           font-size: 40px;
           letter-spacing: -2px;

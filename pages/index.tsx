@@ -237,7 +237,7 @@ const Home: NextPage = () => {
         <div ref={animationContainer} className={styles['animation']} style={{  zIndex:50,height: 'auto', margin: '0 auto', position: fixed? 'fixed' : 'relative',top: '50%', transform: 'translateY(-50%)' }}></div>
       </section>
       
-      <section id="events" className="bg-darkgray flex flex-col w-10/10 justofy-center py-14" style={{position:'relative', zIndex:100, justifyContent:'center', paddingTop:'100px', paddingBottom:'100px', overflow:'hidden'}}>
+      <section id="events" className="bg-darkgray flex flex-col w-10/10 justofy-center py-14" style={{position:'relative', zIndex:100, justifyContent:'center', paddingTop:'100px',  overflow:'hidden'}}>
         <div style={{position:'absolute', width:'100%', height:'100%', backgroundImage:`url('/hero/overlay.jpg')`, mixBlendMode: 'screen', opacity:'30%'}}>
 
         </div>
