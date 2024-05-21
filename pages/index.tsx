@@ -237,7 +237,7 @@ const Home: NextPage = () => {
         <div ref={animationContainer} className={styles['animation']} style={{  zIndex:50,height: 'auto', margin: '0 auto', position: fixed? 'fixed' : 'relative',top: '50%', transform: 'translateY(-50%)' }}></div>
       </section>
       
-      <section id="events" className="bg-darkgray flex flex-col w-10/10 justofy-center py-14" style={{position:'relative', zIndex:100, justifyContent:'center', paddingTop:'100px',  overflow:'hidden'}}>
+      <section id="events" className={`${styles['events']} bg-darkgray flex flex-col w-10/10 py-14`} style={{position:'relative', zIndex:100, justifyContent:'center', paddingTop:'100px', paddingBottom:'100px', overflow:'hidden'}}>
         <div style={{position:'absolute', width:'100%', height:'100%', backgroundImage:`url('/hero/overlay.jpg')`, mixBlendMode: 'screen', opacity:'30%'}}>
 
         </div>
@@ -275,7 +275,7 @@ const Home: NextPage = () => {
           </p>
 
         </div>
-        <div className="flex flex-col md:flex-row justify-center mt-14 mb-10" style={{position:'relative',zIndex:100}}>
+        <div className="flex flex-col lg:flex-row justify-center mt-14 mb-10" style={{position:'relative',zIndex:100}}>
           <div className={styles['card1']} >
           <CardContainer className="inter-var py-0 mx-0 my-0 w-10/10">
             <CardBody className="bg-white relative group/card  dark:hover:shadow-2xl dark:hover:shadow-emerald-500/[0.1] dark:bg-black dark:border-white/[0.2] border-black/[0.1] w-full  h-auto rounded-xl p-4 border  ">
@@ -382,7 +382,7 @@ const Home: NextPage = () => {
         </div>
         
         
-        <div className="flex flex-row mt-14 mb-0">
+        <div className={`${styles['slider']} flex flex-row mt-14 mb-0`}>
           <div style={{ width: '100%', overflow: 'hidden', zIndex:200 }}>
             <Slider {...slideSettings}>
               {[...films, ...films].map((film, index) => (
