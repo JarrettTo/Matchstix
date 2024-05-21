@@ -118,6 +118,7 @@ const Home: NextPage = () => {
     const films = [Film1, Film2, Film3, Film4, Film5];
   return (
     <>
+    <link href="https://fonts.googleapis.com/css2?family=Ibarra+Real+Nova&display=swap" rel="stylesheet"></link>
     <Head>
       <title>Matchstix - Find your next hangout and event with the help of AI</title>
       <meta name="description" content="Bored at home? Don't worry we gotchu. We use AI to curate and find hangouts and events that'll match your personality and preferences. Wtf are you waiting for? Let's go touch some grass." />
