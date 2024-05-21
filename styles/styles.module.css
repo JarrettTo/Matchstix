@@ -204,5 +204,94 @@
         width: 200px;
         bottom: 250px;
     }
-
+    @media (max-width: 400px) {
+        .p-styled {
+          font-size: 50px;
+          letter-spacing: -2px;
+          line-height: 40px;
+          -webkit-text-stroke-width: 2px;
+        }
+        .p-styled-2 {
+            font-size: 35px;
+            letter-spacing: -2px;
+            line-height: 35px;
+            -webkit-text-stroke-width: 2px;
+          }
+    
+        .p-styled-3 {
+            font-size: 38px;
+            position: relative;
+            z-index: 200;
+            letter-spacing: -2px;
+            line-height: 40px;
+            -webkit-text-stroke-width: 2px;
+        }
+        .hero-button {
+            -webkit-text-stroke-width: 1px;
+            letter-spacing: -1px;
+            font-size: 25px;
+        }
+        .span-divider {
+            margin: 0 10px;
+            color: #FFF1D6;
+            font-size: 25px 
+        }
+        .copyright{
+            font-family: 'Ibarra Real Nova, serif';
+            font-size: 13px;
+            text-align: center;
+            letter-spacing: 0px;
+            color: #FFF1D6;
+            line-height: 16px;
+            -webkit-text-stroke-color: #FFF1D6;
+            -webkit-text-stroke-width: 0.2px;
+        }
+        .p-styled-sub{
+            font-family: 'Ibarra Real Nova, serif';
+            font-size: 13px;
+            text-align: center;
+            letter-spacing: 0px;
+            color: #FFF1D6;
+            max-width: 65%;
+            line-height: 16px;
+            -webkit-text-stroke-color: #FFF1D6;
+            -webkit-text-stroke-width: 0.2px;
+        }
+        .animation {
+            width: 250%
+        }
+        .card1{
+            margin-top: 30px;
+    
+            transform: rotate(2deg); 
+            width:100%;
+        }
+        .card2{
+            margin-top: -10px;
+    
+            transform: rotate(-4deg); 
+            width:95%;
+        }
+        .star {
+            position: absolute;
+            width:100px;
+            z-index:100;
+            right: 30px;
+            top:20px;
+          
+        }
+        .ticket {
+            position: absolute;
+            width:300px;
+            z-index:100;
+            left: 250px;
+            bottom:750px;
+            transform: rotate(-25deg);
+          
+        }
+        .camera{
+            width: 200px;
+            bottom: 250px;
+        }
+    }
   }

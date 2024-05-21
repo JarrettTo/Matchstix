@@ -118,8 +118,9 @@ const Home: NextPage = () => {
     const films = [Film1, Film2, Film3, Film4, Film5];
   return (
     <>
-    <link href="https://fonts.googleapis.com/css2?family=Ibarra+Real+Nova&display=swap" rel="stylesheet"></link>
+    
     <Head>
+      <link href="https://fonts.googleapis.com/css2?family=Ibarra+Real+Nova&display=swap" rel="stylesheet"></link>
       <title>Matchstix - Find your next hangout and event with the help of AI</title>
       <meta name="description" content="Bored at home? Don't worry we gotchu. We use AI to curate and find hangouts and events that'll match your personality and preferences. Wtf are you waiting for? Let's go touch some grass." />
 
@@ -133,7 +134,7 @@ const Home: NextPage = () => {
         </video>
         <div className='flex flex-col relative w-full h-full justify-center items-center' style={{width:'100%', height:'60%'}}>
         
-          <div className='flex flex-row justify-center w-9/10' style={{ textAlign: 'center', color: 'white',  position:'relative' }}>
+          <div className='flex flex-row justify-center w-7/10' style={{ textAlign: 'center', color: 'white',  position:'relative' }}>
             <Image src={VectorBG} className="px-12" alt="vector" width={40} height={10} style={{ width: '70%', objectFit: 'cover', fontWeight: 'bold', zIndex: 150, position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }} />            
             <header className={styles['p-styled']}>
               Touch some grass<br/>
