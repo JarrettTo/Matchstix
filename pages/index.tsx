@@ -28,6 +28,7 @@ import styles from '../styles/styles.module.css';
 import { cn } from '../utils/cn';
 import { ButtonsCard } from '../components/ui/button';
 import { FormComponent } from '../components/typeform';
+import Head from 'next/head';
 const Home: NextPage = () => {
   const animationContainer = useRef<HTMLDivElement>(null);
     const animationInstance = useRef<any>(null);
@@ -116,20 +117,27 @@ const Home: NextPage = () => {
     }, []);
     const films = [Film1, Film2, Film3, Film4, Film5];
   return (
+    <>
+    <Head>
+      <title>Matchstix - Find your next hangout and event with the help of AI</title>
+      <meta name="description" content="Bored at home? Don't worry we gotchu. We use AI to curate and find hangouts and events that'll match your personality and preferences. Wtf are you waiting for? Let's go touch some grass." />
+
+    </Head>
     <div style={{scrollBehavior:'smooth'}}>
-      <div className="flex flex-col items-center justify-center" style={{width: '100%', height: '100vh', overflow: 'hidden', position:'relative', scrollBehavior:'smooth'}}>
-        <video id="background-video" muted loop autoPlay style={{ width: '100%', height: '100%', objectFit: 'cover',fontWeight: 'bold',  position:'absolute', zIndex:'100', top: 0, left: 0 }}>
+    
+      <section id="hero" className="bg-black flex flex-col items-center justify-center" style={{width: '100%', height: '100vh', overflow: 'hidden', position:'relative', scrollBehavior:'smooth', zIndex:'99'}}>
+        
+        <video id="background-video" muted loop autoPlay playsInline style={{ width: '100%', height: '100%', objectFit: 'cover',fontWeight: 'bold',  position:'absolute', zIndex:'100', top: 0, left: 0 }}>
           <source src="/hero/bg_video.mp4" type="video/mp4" />
         </video>
-        
         <div className='flex flex-col relative w-full h-full justify-center items-center' style={{width:'100%', height:'60%'}}>
         
           <div className='flex flex-row justify-center w-9/10' style={{ textAlign: 'center', color: 'white',  position:'relative' }}>
             <Image src={VectorBG} className="px-12" alt="vector" width={40} height={10} style={{ width: '70%', objectFit: 'cover', fontWeight: 'bold', zIndex: 150, position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }} />            
-            <p className={styles['p-styled']}>
+            <header className={styles['p-styled']}>
               Touch some grass<br/>
               with Matchstix.
-            </p>
+            </header>
             
           </div>
           
@@ -201,10 +209,10 @@ const Home: NextPage = () => {
           </div>
           
         </div>
-      </div>
+      </section>
 
 
-      <div className="h-[50rem] w-full dark:bg-black bg-black  relative flex items-center justify-center" style={{height:'150vh', width:'100%', position:'relative'}}>
+      <section id="features"  className="h-[50rem] w-full dark:bg-black bg-black  relative flex items-center justify-center" style={{height:'150vh', width:'100%', position:'relative'}}>
         <div style={{position:'absolute', width:'100%', height:'100%', backgroundImage:`url('/hero/overlay.jpg')`, mixBlendMode: 'screen', opacity:'10%', zIndex:20}}>
 
         </div>
@@ -215,19 +223,19 @@ const Home: NextPage = () => {
 
           position: fixed? 'fixed' : 'relative',top: '50%', transform: 'translateY(-50%)',
         }}>
-          <p className={styles['p-styled-2']}>
+          <header className={styles['p-styled-2']}>
             Make memories with<br/>
             the right people.
-          </p>
-          <p className={styles['p-styled-sub']}>
-            © 2024 Matchstix. All rights reserved. Unauthorized use or reproduction is strictly prohibited. Waffle Daffle.
-          </p>
+          </header>
+          <h2 className={styles['p-styled-sub']}>
+            Find your next hangout and event using our AI-powered platform which curates experiences personalized for your weird ass preferences.
+          </h2>
           
         </div>
         <div ref={animationContainer} className={styles['animation']} style={{  zIndex:50,height: 'auto', margin: '0 auto', position: fixed? 'fixed' : 'relative',top: '50%', transform: 'translateY(-50%)' }}></div>
-      </div>
+      </section>
       
-      <div className="bg-darkgray flex flex-col w-10/10 justofy-center py-14" style={{position:'relative', zIndex:100, justifyContent:'center', paddingTop:'100px', paddingBottom:'100px', overflow:'hidden'}}>
+      <section id="events" className="bg-darkgray flex flex-col w-10/10 justofy-center py-14" style={{position:'relative', zIndex:100, justifyContent:'center', paddingTop:'100px', paddingBottom:'100px', overflow:'hidden'}}>
         <div style={{position:'absolute', width:'100%', height:'100%', backgroundImage:`url('/hero/overlay.jpg')`, mixBlendMode: 'screen', opacity:'30%'}}>
 
         </div>
@@ -282,7 +290,7 @@ const Home: NextPage = () => {
                   height="1000"
                   width="1000"
                   className="h-full w-full object-cover rounded-xl group-hover/card:shadow-xl"
-                  alt="thumbnail"
+                  alt="Party Event At Poblacion"
                 />
               </CardItem>
               <CardItem
@@ -316,7 +324,7 @@ const Home: NextPage = () => {
                   height="1000"
                   width="1000"
                   className="h-full w-full object-cover rounded-xl group-hover/card:shadow-xl"
-                  alt="thumbnail"
+                  alt="Party Event At BGC"
                 />
               </CardItem>
               <CardItem
@@ -350,7 +358,7 @@ const Home: NextPage = () => {
                   height="1000"
                   width="1000"
                   className="h-full w-full object-cover rounded-xl group-hover/card:shadow-xl"
-                  alt="thumbnail"
+                  alt="Dinner at Makati"
                 />
               </CardItem>
               <CardItem
@@ -378,8 +386,8 @@ const Home: NextPage = () => {
               {[...films, ...films].map((film, index) => (
                 <>
                 <div key={index} style={{ width: '400px', height: '100%', position: 'relative' }}>
-                  <Image src={film} width={800} height={100} alt="Film BG" className='w-9/10 h-9/10' layout='responsive'  style={{ position:'absolute',zIndex:150, top:15}}  />
-                  <Image src={FilmBG} width={800} height={100} alt="Film BG" className="" style={{position:'relative',zIndex:100}} layout='responsive' />
+                  <Image src={film} width={800} height={100} alt="Party Event" className='w-9/10 h-9/10' layout='responsive'  style={{ position:'absolute',zIndex:150, top:15}}  />
+                  <Image src={FilmBG} width={800} height={100} alt="Party Event" className="" style={{position:'relative',zIndex:100}} layout='responsive' />
                   
                 </div>
                 
@@ -389,7 +397,7 @@ const Home: NextPage = () => {
           </div>
           
         </div>
-      </div>
+      </section>
            
       <div ref={joinDivRef} className="flex flex-col justify-center items-center" style={{zIndex:100, backgroundColor:'#000000', position:'relative', width:'100%', height:'100vh'}}>
         <FormComponent/>
@@ -398,7 +406,7 @@ const Home: NextPage = () => {
       
       </div>
     </div>
-    
+    </>
   );
 };
 
