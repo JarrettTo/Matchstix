@@ -230,7 +230,7 @@ const Home: NextPage = () => {
           <h2 className={styles['p-styled-sub']}>
             Find your next hangout and event using our AI-powered platform which curates experiences personalized for your weird ass preferences.
           </h2>
-          
+    
         </div>
         <div ref={animationContainer} className={styles['animation']} style={{  zIndex:50,height: 'auto', margin: '0 auto', position: fixed? 'fixed' : 'relative',top: '50%', transform: 'translateY(-50%)' }}></div>
       </section>
@@ -297,14 +297,14 @@ const Home: NextPage = () => {
                 translateZ="30"
                 className="text-xl font-bold text-black mt-6 dark:text-white"
               >
-                Make things float in air
+                Night at Clubhouse, BGC
               </CardItem>
               <CardItem
                 as="p"
                 translateZ="30"
                 className="text-black text-sm max-w-sm dark:text-neutral-300"
               >
-                Hover over this card to unleash the power of CSS perspective
+                April 12, 2024
               </CardItem>
             </CardBody>
           </CardContainer>
@@ -331,14 +331,14 @@ const Home: NextPage = () => {
                 translateZ="30"
                 className="text-xl font-bold text-black mt-6 dark:text-white"
               >
-                Make things float in air
+                Dinner at Adriatico
               </CardItem>
               <CardItem
                 as="p"
                 translateZ="30"
                 className="text-black text-sm max-w-sm dark:text-neutral-300"
               >
-                Hover over this card to unleash the power of CSS perspective
+                May 4, 2024
               </CardItem>
             </CardBody>
           </CardContainer>
@@ -365,14 +365,14 @@ const Home: NextPage = () => {
                 translateZ="30"
                 className="text-xl font-bold text-black mt-6 dark:text-white"
               >
-                Make things float in air
+                Midnight Pobla Crawl
               </CardItem>
               <CardItem
                 as="p"
                 translateZ="30"
                 className="text-black text-sm max-w-sm dark:text-neutral-300"
               >
-                Hover over this card to unleash the power of CSS perspective
+                April 20, 2024
               </CardItem>
             </CardBody>
           </CardContainer>
