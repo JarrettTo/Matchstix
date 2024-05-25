@@ -3,6 +3,8 @@
     font-family: 'Ibarra Real Nova', serif;
     text-align: center;
     font-size: 140px;
+    padding-left: 10px;
+    padding-right: 10px;
     line-height: 100px;
     z-index: 200;
     color: #FFF1D6;

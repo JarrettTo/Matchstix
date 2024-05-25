@@ -18,6 +18,11 @@ import Film2 from '../public/hero/film2.jpg'
 import Film3 from '../public/hero/film3.jpg'
 import Film4 from '../public/hero/film4.jpg'
 import Film5 from '../public/hero/film5.jpg'
+import Img1 from '../public/hero/1.jpg'
+import Img2 from '../public/hero/2.jpg'
+import Img3 from '../public/hero/3.jpg'
+import Img4 from '../public/hero/4.jpg'
+import Img5 from '../public/hero/5.jpg'
 import Star from '../public/hero/star.png'
 import Ticket from '../public/hero/ticket.png'
 import Camera from '../public/hero/camera.png'
@@ -115,7 +120,7 @@ const Home: NextPage = () => {
             animationInstance.current?.destroy();
         };
     }, []);
-    const films = [Film1, Film2, Film3, Film4, Film5];
+    const films = [Img1, Film2, Img4, Film4, Film5];
   return (
     <>
     
@@ -137,8 +142,7 @@ const Home: NextPage = () => {
           <div className='flex flex-row justify-center w-7/10' style={{ textAlign: 'center', color: 'white',  position:'relative' }}>
             <Image src={VectorBG} className="px-12" alt="vector" width={40} height={10} style={{ width: '70%', objectFit: 'cover', fontWeight: 'bold', zIndex: 150, position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }} />            
             <header className={styles['p-styled']}>
-              Touch some grass<br/>
-              with Matchstix.
+            New experiences<br/>with new people.
             </header>
             
           </div>
@@ -226,11 +230,11 @@ const Home: NextPage = () => {
           position: fixed? 'fixed' : 'relative',top: '50%', transform: 'translateY(-50%)',
         }}>
           <header className={styles['p-styled-2']}>
-            Make memories with<br/>
-            the right people.
+            Right place. Right time.<br/>
+            Right people.
           </header>
           <h2 className={styles['p-styled-sub']}>
-            Find your next hangout and event using our AI-powered platform which curates experiences personalized for your weird ass preferences.
+            Turning strangers into unforgettable memories.
           </h2>
     
         </div>
@@ -277,7 +281,7 @@ const Home: NextPage = () => {
         </div>
         <div className="flex flex-col lg:flex-row justify-center mt-14 mb-10" style={{position:'relative',zIndex:100}}>
           <div className={styles['card1']} >
-          <CardContainer className="inter-var py-0 mx-0 my-0 w-10/10">
+          <CardContainer className="inter-var py-0 mx-0 my-0 w-9/10">
             <CardBody className="bg-white relative group/card  dark:hover:shadow-2xl dark:hover:shadow-emerald-500/[0.1] dark:bg-black dark:border-white/[0.2] border-black/[0.1] w-full  h-auto rounded-xl p-4 border  ">
               
               <CardItem
@@ -288,7 +292,7 @@ const Home: NextPage = () => {
               
               >
                 <Image
-                  src={Event1}
+                  src={Img3}
                   height="1000"
                   width="1000"
                   className="h-full w-full object-cover rounded-xl group-hover/card:shadow-xl"
@@ -299,7 +303,7 @@ const Home: NextPage = () => {
                 translateZ="30"
                 className="text-xl font-bold text-black mt-6 dark:text-white"
               >
-                Night at Clubhouse, BGC
+                House party at Kaye's
               </CardItem>
               <CardItem
                 as="p"
@@ -322,7 +326,7 @@ const Home: NextPage = () => {
                 className="w-full mt-4"
               >
                 <Image
-                  src={Event1}
+                  src={Img2}
                   height="1000"
                   width="1000"
                   className="h-full w-full object-cover rounded-xl group-hover/card:shadow-xl"
@@ -333,7 +337,7 @@ const Home: NextPage = () => {
                 translateZ="30"
                 className="text-xl font-bold text-black mt-6 dark:text-white"
               >
-                Dinner at Adriatico
+                Night at Clubhouse, BGC
               </CardItem>
               <CardItem
                 as="p"
@@ -356,9 +360,9 @@ const Home: NextPage = () => {
                 className="w-full mt-4"
               >
                 <Image
-                  src={Event3}
-                  height="1000"
-                  width="1000"
+                  src={Img5}
+                  height="500"
+                  width="500"
                   className="h-full w-full object-cover rounded-xl group-hover/card:shadow-xl"
                   alt="Dinner at Makati"
                 />
@@ -367,7 +371,7 @@ const Home: NextPage = () => {
                 translateZ="30"
                 className="text-xl font-bold text-black mt-6 dark:text-white"
               >
-                Midnight Pobla Crawl
+                Trip to the beach
               </CardItem>
               <CardItem
                 as="p"
