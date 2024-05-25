@@ -23,6 +23,7 @@ import Img2 from '../public/hero/2.jpg'
 import Img3 from '../public/hero/3.jpg'
 import Img4 from '../public/hero/4.jpg'
 import Img5 from '../public/hero/5.jpg'
+import Img6 from '../public/hero/6.jpg'
 import Star from '../public/hero/star.png'
 import Ticket from '../public/hero/ticket.png'
 import Camera from '../public/hero/camera.png'
@@ -120,7 +121,7 @@ const Home: NextPage = () => {
             animationInstance.current?.destroy();
         };
     }, []);
-    const films = [Img1, Film2, Img4, Film4, Film5];
+    const films = [Img1, Img4, Img2, Film4, Film5];
   return (
     <>
     
@@ -326,7 +327,7 @@ const Home: NextPage = () => {
                 className="w-full mt-4"
               >
                 <Image
-                  src={Img2}
+                  src={Img6}
                   height="1000"
                   width="1000"
                   className="h-full w-full object-cover rounded-xl group-hover/card:shadow-xl"
