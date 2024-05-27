@@ -393,7 +393,7 @@ const Home: NextPage = () => {
         </div>
       </section>
            
-      <div ref={joinDivRef} className="flex flex-col justify-center items-center" style={{zIndex:100, backgroundColor:'#000000', position:'relative', width:'100%', height:'100vh'}}>
+      <div ref={joinDivRef} className="flex flex-col justify-center items-center" style={{zIndex:100, backgroundColor:'#000000', position:'relative', width:'100%', minHeight:'100vh'}}>
         <FormComponent/>
         
 
