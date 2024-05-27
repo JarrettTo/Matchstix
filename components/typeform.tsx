@@ -2,9 +2,37 @@ import { Widget } from '@typeform/embed-react'
 import { useEffect } from 'react'
 
 export const FormComponent = () => {
-  useEffect(()=>{
-    
-  },[])
+  useEffect(() => {
+    const loadTallyScript = () => {
+      const scriptSrc = "https://tally.so/widgets/embed.js";
+      const scriptExists = document.querySelector(`script[src="${scriptSrc}"]`);
+
+      const initializeTally = () => {
+        //@ts-ignore
+        if (window.Tally) {
+          //@ts-ignore
+          window.Tally.loadEmbeds();
+        } else {
+          document.querySelectorAll('iframe[data-tally-src]:not([src])').forEach((iframe) => {
+            //@ts-ignore
+            iframe.src = iframe.dataset.tallySrc!;
+          });
+        }
+      };
+
+      if (!scriptExists) {
+        const script = document.createElement('script');
+        script.src = scriptSrc;
+        script.onload = initializeTally;
+        script.onerror = initializeTally;
+        document.body.appendChild(script);
+      } else {
+        initializeTally();
+      }
+    };
+
+    loadTallyScript();
+  }, []);
   return (
     <>
       <iframe
