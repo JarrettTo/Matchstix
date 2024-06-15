@@ -36,7 +36,7 @@ export const FormComponent = () => {
   return (
     <div className='py-14 w-10/10 flex justify' style={{width:'90%'}}>
       <iframe
-        data-tally-src="https://tally.so/embed/mR4GNl?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1"
+        data-tally-src="https://tally.so/embed/wbkza1?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1"
         loading="lazy"
         width="100%"
         height="90%"
